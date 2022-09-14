@@ -1,8 +1,11 @@
 package graphs.impl;
 
+import graphs.Dijkstra;
 import graphs.Graph;
 
+import java.util.HashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,5 +46,22 @@ public class GraphImpl extends Graph {
         } else {
             checkedReset();
         }
+    }
+
+    @Override
+    public Map<String, Map<String, Integer>> calculateAllShortagePaths() {
+        Map<String, Map<String, Integer>> resultMap = new HashMap<>();
+        Dijkstra dijkstra = new DijkstraImpl();
+        for(Node node : this.getNodeSet()) {
+            Map<String, Integer> subResultMap = new HashMap<>();
+            dijkstra.findShortagePath(node);
+            this.getNodeSet().forEach((item) -> {
+                subResultMap.put(item.getName(), item.getDistance());
+            });
+            resultMap.put(node.getName(), subResultMap);
+            this.checkedReset();
+            this.resetDistanceAndPaths();
+        }
+        return resultMap;
     }
 }

@@ -5,6 +5,7 @@ import graphs.impl.GraphImpl;
 import graphs.impl.Node;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Main {
 
@@ -46,15 +47,19 @@ public class Main {
         B3.addPath(B4, 1, false);
 
 //        dijkstra.findShortagePath(A1);
-
-
-        for(Node node : graph.getNodeSet()) {
-            System.out.println(node.getName());
-            dijkstra.findShortagePath(node);
+//        System.out.println("---------");
+//        graph.calculateAllShortagePaths().forEach((key, value) -> {
+//            System.out.println("#####");
+//            System.out.println(key);
+//            value.forEach((key1, value1) -> System.out.println("\t" + key1 + "/" + value1));
+//        });
+//        for(Node node : graph.getNodeSet()) {
+//            System.out.println(node.getName());
+            dijkstra.findShortagePath(A1);
             showShortagePaths(graph);
-            graph.checkedReset();
-            graph.resetDistanceAndPaths();
-        }
+//            graph.checkedReset();
+//            graph.resetDistanceAndPaths();
+//        }
 
 //        graph.addNode(S, A1, 1);
 //        graph.findShortagePath(A2, D3);
@@ -117,9 +122,9 @@ public class Main {
     static private void  showShortagePaths(Graph graph) {
         graph.getNodeSet().forEach((item) -> {
             System.out.println("\tITEM: " + item.getName() + "/" + item.getDistance());
-            item.getShortestPath().forEach(i -> {
-                System.out.println("\t\t" + i.getFrom().getName() + "->" + i.getTo().getName());
-            });
+//            item.getShortestPath().forEach(i -> {
+//                System.out.println("\t\t" + i.getFrom().getName() + "->" + i.getTo().getName());
+//            });
         });
     }
 }

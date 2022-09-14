@@ -3,6 +3,7 @@ package graphs;
 import graphs.impl.Node;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class Graph {
@@ -14,6 +15,8 @@ public abstract class Graph {
     public abstract void resetDistanceAndPaths();
 
     public abstract void showGraph(Node start);
+
+    public abstract Map<String, Map<String, Integer>> calculateAllShortagePaths();
 
     public Set<Node> getNodeSet() {
         return nodeSet;
