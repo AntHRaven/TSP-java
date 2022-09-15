@@ -3,16 +3,17 @@ import graphs.Graph;
 import graphs.impl.DijkstraImpl;
 import graphs.impl.GraphImpl;
 import graphs.impl.Node;
+import graphs.impl.ResultParser;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         Dijkstra dijkstra = new DijkstraImpl();
         Graph graph = new GraphImpl();
-        Node S = new Node("S", graph);
+//        Node S = new Node("S", graph);
 
         Node A1 = new Node("A1", graph);
         Node A2 = new Node("A2", graph);
@@ -23,7 +24,7 @@ public class Main {
         Node B3 = new Node("B3", graph);
         Node B4 = new Node("B4", graph);
 
-        S.addPath(A1, 1, false);
+//        S.addPath(A1, 1, false);
 
         A1.addPath(A2, 1, false);
         A1.addPath(B1, 2, false);
@@ -55,8 +56,10 @@ public class Main {
 //        });
 //        for(Node node : graph.getNodeSet()) {
 //            System.out.println(node.getName());
-            dijkstra.findShortagePath(A1);
-            showShortagePaths(graph);
+//            dijkstra.findShortagePath(A1);
+        ResultParser resultParser = new ResultParser();
+        resultParser.saveResultToJson(graph.calculateAllShortagePaths(), new File("C:\\Users\\n.veko\\IdeaProjects\\Deikstra\\deikstra\\src\\main\\java\\graphs\\result.json"));
+//            showShortagePaths(graph);
 //            graph.checkedReset();
 //            graph.resetDistanceAndPaths();
 //        }

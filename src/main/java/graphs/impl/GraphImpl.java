@@ -49,8 +49,8 @@ public class GraphImpl extends Graph {
     }
 
     @Override
-    public Map<String, Map<String, Integer>> calculateAllShortagePaths() {
-        Map<String, Map<String, Integer>> resultMap = new HashMap<>();
+    public Result calculateAllShortagePaths() {
+        Result resultMap = new Result();
         Dijkstra dijkstra = new DijkstraImpl();
         for(Node node : this.getNodeSet()) {
             Map<String, Integer> subResultMap = new HashMap<>();
@@ -58,7 +58,7 @@ public class GraphImpl extends Graph {
             this.getNodeSet().forEach((item) -> {
                 subResultMap.put(item.getName(), item.getDistance());
             });
-            resultMap.put(node.getName(), subResultMap);
+            resultMap.getResultMap().put(node.getName(), subResultMap);
             this.checkedReset();
             this.resetDistanceAndPaths();
         }

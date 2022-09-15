@@ -1,6 +1,7 @@
 package graphs;
 
 import graphs.impl.Node;
+import graphs.impl.Result;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -16,7 +17,7 @@ public abstract class Graph {
 
     public abstract void showGraph(Node start);
 
-    public abstract Map<String, Map<String, Integer>> calculateAllShortagePaths();
+    public abstract Result calculateAllShortagePaths();
 
     public Set<Node> getNodeSet() {
         return nodeSet;
