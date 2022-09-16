@@ -24,28 +24,85 @@ public class Main {
         Node B3 = new Node("B3", graph);
         Node B4 = new Node("B4", graph);
 
+        Node C1 = new Node("C1", graph);
+        Node C2 = new Node("C2", graph);
+        Node C3 = new Node("C3", graph);
+        Node C4 = new Node("C4", graph);
+
+        Node D1 = new Node("D1", graph);
+        Node D2 = new Node("D2", graph);
+        Node D3 = new Node("D3", graph);
+        Node D4 = new Node("D4", graph);
+
 //        S.addPath(A1, 1, false);
 
-        A1.addPath(A2, 1, false);
-        A1.addPath(B1, 2, false);
-        A1.addPath(B2, 3, false);
+        A1.addPath(A2, 2, false);
+        A1.addPath(B1, 3, false);
+        A1.addPath(B2, 4, false);
 
         A2.addPath(A3, 1, false);
-        A2.addPath(B2, 2, false);
-        A2.addPath(B1, 3, false);
-        A2.addPath(B3, 3, false);
+        A2.addPath(B2, 3, false);
+        A2.addPath(B1, 4, false);
+        A2.addPath(B3, 4, false);
+
+        A3.addPath(A4, 2, false);
+        A3.addPath(B3, 3, false);
+        A3.addPath(B2, 4, false);
+        A3.addPath(B4, 4, false);
+
+        A4.addPath(B3, 4, false);
+        A4.addPath(B4, 3, false);
+
+        B1.addPath(B2, 2, false);
+        B2.addPath(B3, 1, false);
+        B3.addPath(B4, 2, false);
+
+        A1.addPath(A2, 1, false);
+        A1.addPath(B1, 3, false);
+        A1.addPath(B2, 4, false);
+
+        A2.addPath(A3, 1, false);
+        A2.addPath(B2, 3, false);
+        A2.addPath(B1, 4, false);
+        A2.addPath(B3, 4, false);
 
         A3.addPath(A4, 1, false);
-        A3.addPath(B3, 2, false);
-        A3.addPath(B2, 3, false);
-        A3.addPath(B4, 3, false);
+        A3.addPath(B3, 3, false);
+        A3.addPath(B2, 4, false);
+        A3.addPath(B4, 4, false);
 
-        A4.addPath(B3, 3, false);
-        A4.addPath(B4, 2, false);
+        A4.addPath(B3, 4, false);
+        A4.addPath(B4, 3, false);
 
         B1.addPath(B2, 1, false);
         B2.addPath(B3, 1, false);
         B3.addPath(B4, 1, false);
+
+
+        B1.addPath(C1, 5, false);
+        B4.addPath(C4, 5, false);
+
+
+        C1.addPath(C2, 2, false);
+        C1.addPath(D1, 3, false);
+        C1.addPath(D2, 4, false);
+
+        C2.addPath(C3, 1, false);
+        C2.addPath(D2, 3, false);
+        C2.addPath(D1, 4, false);
+        C2.addPath(D3, 4, false);
+
+        C3.addPath(C4, 2, false);
+        C3.addPath(D3, 3, false);
+        C3.addPath(D2, 4, false);
+        C3.addPath(D4, 4, false);
+
+        C4.addPath(D3, 4, false);
+        C4.addPath(D4, 3, false);
+
+        D1.addPath(D2, 2, false);
+        D2.addPath(D3, 1, false);
+        D3.addPath(D4, 2, false);
 
 //        dijkstra.findShortagePath(A1);
 //        System.out.println("---------");

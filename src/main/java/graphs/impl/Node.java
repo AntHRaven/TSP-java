@@ -15,9 +15,9 @@ public final class Node extends GraphImpl {
     public Node() {
     }
 
-    public Node(String name, Graph graphImpl) {
+    public Node(String name, Graph graph) {
         this.name = name;
-        addToGraph(graphImpl);
+        addToGraph(graph);
     }
 
     public Node(String name, boolean checked, LinkedHashSet<Path> shortestPath, Integer distance) {
@@ -27,8 +27,8 @@ public final class Node extends GraphImpl {
         this.distance = distance;
     }
 
-    private void addToGraph(Graph graphImpl) {
-        graphImpl.getNodeSet().add(this);
+    private void addToGraph(Graph graph) {
+        graph.getNodeSet().add(this);
     }
 
     public void addPath(Node to, Integer weight, boolean directed) {
