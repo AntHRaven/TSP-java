@@ -1,6 +1,6 @@
 package graphs;
 
-public class Path {
+public final class Path {
 
     private Node from;
     private Node to;

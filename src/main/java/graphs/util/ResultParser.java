@@ -1,4 +1,4 @@
-package graphs;
+package graphs.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

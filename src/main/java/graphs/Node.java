@@ -1,7 +1,5 @@
 package graphs;
 
-import graphs.impl.GraphImpl;
-
 import java.util.*;
 
 public final class Node {

@@ -1,18 +1,18 @@
-import graphs.Dijkstra;
-import graphs.Graph;
 import graphs.impl.DijkstraImpl;
-import graphs.impl.GraphImpl;
+import graphs.Graph;
 import graphs.Node;
-import graphs.ResultParser;
+import graphs.util.ResultParser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Dijkstra dijkstra = new DijkstraImpl();
-        Graph graph = new GraphImpl();
+        graphs.Dijkstra dijkstra = new DijkstraImpl();
+        Graph graph = new Graph();
 //        Node S = new Node("S", graph);
 
         Node A1 = new Node("A1", graph);
@@ -85,8 +85,16 @@ public class Main {
         D3.addPath(D4, 1, false);
 
         ResultParser resultParser = new ResultParser();
-        resultParser.saveResultToJson(graph.calculateAllShortagePaths(), new File("C:\\Users\\n.veko\\IdeaProjects\\Deikstra\\deikstra\\src\\main\\java\\graphs\\result.json"));
+        resultParser.saveResultToJson(graph.calculateAllShortagePaths(), new File("../result.json"));
 
+        List<String> parts = new ArrayList<>();
+        parts.add("C1");
+        parts.add("A3");
+        parts.add("D1");
+        parts.add("D3");
+        parts.add("B4");
+
+        graph.findShortagePath(parts, "A1").forEach(System.out::println);
     }
 
     static private void  showShortagePaths(Graph graph) {

@@ -1,12 +1,13 @@
 package graphs.impl;
 
 import graphs.Dijkstra;
+import graphs.Graph;
 import graphs.Node;
 import graphs.Path;
 
 import java.util.LinkedHashSet;
 
-public class DijkstraImpl extends GraphImpl implements Dijkstra {
+public class DijkstraImpl extends Graph implements Dijkstra {
 
     public Node findShortagePath(Node current) {
         for (Path path : current.getPaths()) {
@@ -25,7 +26,7 @@ public class DijkstraImpl extends GraphImpl implements Dijkstra {
         current.setChecked(true);
         if (minNodePath.getName() != null) {
             return findShortagePath(minNodePath);
-        } else if (getUncheckedNode(current.getGraph()) != null){
+        } else if (getUncheckedNode(current.getGraph()) != null) {
             return findShortagePath(getUncheckedNode(current.getGraph()));
         }
         return current;
