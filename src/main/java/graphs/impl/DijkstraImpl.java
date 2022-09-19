@@ -1,6 +1,8 @@
 package graphs.impl;
 
 import graphs.Dijkstra;
+import graphs.Node;
+import graphs.Path;
 
 import java.util.LinkedHashSet;
 
@@ -23,6 +25,8 @@ public class DijkstraImpl extends GraphImpl implements Dijkstra {
         current.setChecked(true);
         if (minNodePath.getName() != null) {
             return findShortagePath(minNodePath);
+        } else if (getUncheckedNode(current.getGraph()) != null){
+            return findShortagePath(getUncheckedNode(current.getGraph()));
         }
         return current;
     }

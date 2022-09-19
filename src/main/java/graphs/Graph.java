@@ -1,8 +1,5 @@
 package graphs;
 
-import graphs.impl.Node;
-import graphs.impl.Result;
-
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -21,7 +18,9 @@ public abstract class Graph {
 
     public abstract Result calculateAllShortagePaths();
 
-    public abstract LinkedList<String> findShortagePath(List<String> parts, String current) throws IOException;
+    public abstract Node getUncheckedNode(Graph graph);
+
+    public abstract List<String> findShortagePath(List<String> parts, String current) throws IOException;
 
     public Set<Node> getNodeSet() {
         return nodeSet;

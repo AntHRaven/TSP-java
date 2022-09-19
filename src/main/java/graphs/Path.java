@@ -1,4 +1,4 @@
-package graphs.impl;
+package graphs;
 
 public class Path {
 

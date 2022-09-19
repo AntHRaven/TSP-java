@@ -1,16 +1,17 @@
-package graphs.impl;
+package graphs;
 
-import graphs.Graph;
+import graphs.impl.GraphImpl;
 
 import java.util.*;
 
-public final class Node extends GraphImpl {
+public final class Node {
 
     private String name;
     private boolean checked = false;
     private List<Path> paths = new ArrayList<>();
     private LinkedHashSet<Path> shortestPath = new LinkedHashSet<>();
     private Integer distance = Integer.MAX_VALUE;
+    private Graph graph;
 
     public Node() {
     }
@@ -28,6 +29,7 @@ public final class Node extends GraphImpl {
     }
 
     private void addToGraph(Graph graph) {
+        setGraph(graph);
         graph.getNodeSet().add(this);
     }
 
@@ -89,5 +91,13 @@ public final class Node extends GraphImpl {
 
     public void setDistance(Integer distance) {
         this.distance = distance;
+    }
+
+    public Graph getGraph() {
+        return graph;
+    }
+
+    public void setGraph(Graph graph) {
+        this.graph = graph;
     }
 }

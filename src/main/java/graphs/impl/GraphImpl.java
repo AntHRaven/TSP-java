@@ -1,7 +1,6 @@
 package graphs.impl;
 
-import graphs.Dijkstra;
-import graphs.Graph;
+import graphs.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +9,8 @@ import java.util.stream.Collectors;
 
 public class GraphImpl extends Graph {
 
-    private static final String RESULT_JSON_PATH = "C:\\Users\\n.veko\\IdeaProjects\\Deikstra\\deikstra\\src\\main\\java\\graphs\\result.json";
-    private LinkedList<String> shortagePath = new LinkedList<>();
+    private static final String RESULT_JSON_PATH = "result.json";
+    private final LinkedList<String> shortagePath = new LinkedList<>();
 
     public GraphImpl() {
     }
@@ -25,10 +24,6 @@ public class GraphImpl extends Graph {
             item.setDistance(Integer.MAX_VALUE);
             item.setShortestPath(new LinkedHashSet<>());
         }).collect(Collectors.toSet()));
-    }
-
-    private Integer calculateDistance(Set<Path> paths) {
-        return paths.stream().map((Path::getWeight)).reduce(0, Integer::sum);
     }
 
     public void showGraph(Node start) {
@@ -60,11 +55,25 @@ public class GraphImpl extends Graph {
             this.getNodeSet().forEach((item) -> {
                 subResultMap.put(item.getName(), item.getDistance());
             });
-            resultMap.getResultMap().put(node.getName(), subResultMap);
+            Map<String, Integer> sortedSubResultMap = subResultMap
+                    .entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByValue())
+                    .collect(Collectors.toMap(
+                            Map.Entry::getKey,
+                            Map.Entry::getValue,
+                            (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+            resultMap.getResultMap().put(node.getName(), sortedSubResultMap);
+
             this.checkedReset();
             this.resetDistanceAndPaths();
         }
         return resultMap;
+    }
+
+    @Override
+    public Node getUncheckedNode(Graph graph) {
+        return graph.getNodeSet().stream().filter(i -> i.isNotChecked() && i.getDistance() != Integer.MAX_VALUE).findFirst().orElse(null);
     }
 
     @Override
@@ -73,18 +82,15 @@ public class GraphImpl extends Graph {
         Result result = resultParser.getMapFromJson(new File(RESULT_JSON_PATH));
         Integer minPath = Integer.MAX_VALUE;
         String currentMinPath = null;
-        System.out.println("CURRENT:" + current);
         for (String part : parts) {
-            if(result.getResultMap().get(current).get(part) < minPath) {
-                System.out.println(result.getResultMap().get(current).get(part) + "<" + minPath);
+            if (result.getResultMap().get(current).get(part) < minPath) {
                 minPath = result.getResultMap().get(current).get(part);
                 currentMinPath = part;
             }
         }
         shortagePath.add(currentMinPath);
         parts.remove(currentMinPath);
-        System.out.println("min:" + currentMinPath);
-        if(parts.size() != 0) {
+        if (parts.size() != 0) {
             return findShortagePath(parts, currentMinPath);
         }
         return shortagePath;
